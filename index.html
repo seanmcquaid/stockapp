@@ -5,9 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Stock App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts.js"></script>
 </head>
 <body>
-    <script src="scripts.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Get Real-Time Stock Quotes</h1>
+                <div class="stock-form">
+                    <form class="input-group">
+                        <input type="text" class="form-control" id="symbol" />
+                        <button type="submit" class="btn btn-primary">Get Me Some Good News</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12">
+                <table id="stock-table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Stock Symbol</th>
+                            <th>Company Name</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Daily Change</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-body">
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
