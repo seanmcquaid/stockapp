@@ -29,24 +29,36 @@ $(document).ready(()=>{
             // 1) where to get the json
             // 2) function to run when I am back
             $.getJSON(url, (theDataJSFoundIfAny)=>{
-                // append will add this html
-                let changeClass = "";
-                if (theDataJSFoundIfAny.change > 0) {
-                    changeClass = "bg-success";
-                } else {
-                    changeClass = "bg-danger"
-                }
-                $("#stock-body").append(`
-                    <tr>
-                        <td>${theDataJSFoundIfAny.symbol}</td>
-                        <td>${theDataJSFoundIfAny.companyName}</td>
-                        <td>${theDataJSFoundIfAny.high}</td>
-                        <td>${theDataJSFoundIfAny.low}</td>
-                        <td class="${changeClass}">${theDataJSFoundIfAny.change}</td>
-                    </tr>
-                `); // end append
-            }); // end getJSON
+                if(theDataJSFoundIfAny.change > 0 || theDataJSFoundIfAny.change < 0){
+                    // append will add this html
+                    let changeClass = "";
+                    if (theDataJSFoundIfAny.change > 0) {
+                        changeClass = "bg-success";
+                    } else {
+                        changeClass = "bg-danger"
+                    }
+                    $("#stock-body").append(`
+                        <tr id="${theDataJSFoundIfAny.symbol}">
+                            <td><button id="remove" class="btn btn-danger" delRow="${theDataJSFoundIfAny.symbol}">X</button></td>
+                            <td>${theDataJSFoundIfAny.symbol}</td>
+                            <td>${theDataJSFoundIfAny.companyName}</td>
+                            <td>${theDataJSFoundIfAny.high}</td>
+                            <td>${theDataJSFoundIfAny.low}</td>
+                            <td class="${changeClass}">${theDataJSFoundIfAny.change}</td>
+                        </tr>
+                    `); // end append
+                } else{
+                    alert("Type out something else!");
+            }
+        }); // end getJSON
         }); // end forEach
         $('#stock-table').DataTable();
     }); // end stockform listener
+    $(document).on("click", "#remove", function(){
+        const rowToDelete = $("#remove").attr("delRow");
+        $("#" + rowToDelete).remove();
+    })
 });
+
+// 1) Get different pieces of data from JSON
+// 2) Inform the user that there is no price for the stock
